@@ -1,0 +1,39 @@
+[
+  {
+    "primary_category": "Personal Care",
+    "sub_category": "Hair Care",
+    "seo_tags": [
+      "charcoal shampoo bar",
+      "shampoo for oily hair",
+      "sulfate-free shampoo",
+      "plastic-free hair care",
+      "solid shampoo bar",
+      "eco-friendly shampoo"
+    ],
+    "sustainability_filters": [
+      "Compostable Packaging",
+      "Plastic-Free",
+      "Zero Waste",
+      "Sulfate-Free",
+      "Paraben-Free"
+    ]
+  },
+  {
+    "primary_category": "Kitchen & Dining",
+    "sub_category": "Food Storage & Organization",
+    "seo_tags": [
+      "silicone food covers",
+      "reusable stretch lids",
+      "eco-friendly kitchen products",
+      "plastic wrap alternative",
+      "food-grade silicone lids",
+      "leak-proof storage covers"
+    ],
+    "sustainability_filters": [
+      "Reusable",
+      "Plastic-Free Alternative",
+      "Non-Toxic",
+      "Long-Lasting"
+    ]
+  }
+]
