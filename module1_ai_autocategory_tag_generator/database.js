@@ -1,23 +1,20 @@
-import fs from "fs";
+import { supabase } from "./supabase.js";
 
-const DB_FILE = "products.json";
 
-export const saveToCatalog = (productData) => {
-  let products = [];
 
-  if (fs.existsSync(DB_FILE)) {
-    const rawData = fs.readFileSync(DB_FILE);
-    products = JSON.parse(rawData);
+export const saveToCatalog =async (productData) => {
+  const {error} = await supabase.from("products").insert([productData]);
+  if(error){
+    throw new Error(`DB insert failed: ${error.message}`);
   }
-
-  products.push(productData);
-
-  fs.writeFileSync(DB_FILE, JSON.stringify(products, null, 2));
 };
 
 
-export const getAllProducts = () => {
-  if (!fs.existsSync(DB_FILE)) return [];
-  const rawData = fs.readFileSync(DB_FILE);
-  return JSON.parse(rawData);
+export const getAllProducts = async () => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(`DB fetch failed: ${error.message}`);
+  return data;
 };

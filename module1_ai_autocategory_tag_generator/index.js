@@ -1,6 +1,8 @@
 import express from "express";
 import { analyzeProduct } from "./gemini.js";
 import { saveToCatalog } from "./database.js";
+import { logInteraction } from "./logger.js";
+
 const app = express();
 app.use(express.json());
 app.post("/analyze", async (req, res) => {
@@ -15,16 +17,18 @@ app.post("/analyze", async (req, res) => {
         .status(400)
         .json({ error: "Product 'description' is required." });
     }
-    const aiResult = await analyzeProduct(description.trim());
+    const id = Date.now();
+    const { result: aiResult, prompt } = await analyzeProduct(description.trim());
     //now  saving the full record including the original input, not just AI output
     const productRecord = {
-      id: Date.now(),
+      id,
       name: name?.trim() || "Unnamed Product",
       description: description.trim(),
       ...aiResult,
       created_at: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
     };
-    saveToCatalog(productRecord);
+    await saveToCatalog(productRecord);
+    await logInteraction(prompt, aiResult, id);
     res.json(productRecord);
   } catch (error) {
     console.error("Error in /analyze:", error.message);

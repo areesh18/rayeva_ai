@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
-import { logInteraction } from "./logger.js";
+
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -54,6 +54,5 @@ export const analyzeProduct = async (productDescription) => {
     jsonResponse.primary_category = "Home & Living"; // safe fallback
   }
 
-  logInteraction(prompt, jsonResponse);
-  return jsonResponse;
+  return { result: jsonResponse, prompt };
 };
