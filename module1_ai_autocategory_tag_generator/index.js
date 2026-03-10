@@ -18,14 +18,18 @@ app.post("/analyze", async (req, res) => {
         .json({ error: "Product 'description' is required." });
     }
     const id = Date.now();
-    const { result: aiResult, prompt } = await analyzeProduct(description.trim());
+    const { result: aiResult, prompt } = await analyzeProduct(
+      description.trim(),
+    );
     //now  saving the full record including the original input, not just AI output
     const productRecord = {
       id,
       name: name?.trim() || "Unnamed Product",
       description: description.trim(),
       ...aiResult,
-      created_at: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      created_at: new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      }),
     };
     await saveToCatalog(productRecord);
     await logInteraction(prompt, aiResult, id);
