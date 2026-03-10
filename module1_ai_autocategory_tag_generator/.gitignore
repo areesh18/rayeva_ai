@@ -1,1 +1,4 @@
 .env
+node_modules
+ai_logs.json
+products.json
