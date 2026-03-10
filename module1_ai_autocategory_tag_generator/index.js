@@ -2,8 +2,9 @@ import express from "express";
 import { analyzeProduct } from "./gemini.js";
 import { saveToCatalog } from "./database.js";
 import { logInteraction } from "./logger.js";
-
+import cors from "cors";
 const app = express();
+app.use(cors({origin:"http://localhost:5173"}));
 app.use(express.json());
 app.post("/analyze", async (req, res) => {
   try {
