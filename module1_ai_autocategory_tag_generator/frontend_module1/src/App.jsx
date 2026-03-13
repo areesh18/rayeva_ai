@@ -11,7 +11,8 @@ export default function App() {
         <Navbar />
         <main className="flex-1 w-full">
           <Routes>
-            <Route path="/" element={<Catalog />} />
+            <Route path="/" element={<Analyze />} />
+            <Route path="/catalog" element={<Catalog />} />
             <Route path="/analyze" element={<Analyze />} />
             <Route path="/logs" element={<Logs />} />
           </Routes>

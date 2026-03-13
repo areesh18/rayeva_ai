@@ -8,7 +8,7 @@ export default function Navbar() {
   const isActive = (path) => pathname === path;
 
   const links = [
-    { path: "/", label: "Catalog" },
+    { path: "/catalog", label: "Catalog" },
     { path: "/analyze", label: "Analyze" },
     { path: "/logs", label: "AI Logs" },
   ];
