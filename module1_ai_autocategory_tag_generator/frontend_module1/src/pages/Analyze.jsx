@@ -27,26 +27,22 @@ export default function Analyze() {
   };
 
   return (
-    <div className="min-h-screen px-6 py-14" style={{ backgroundColor: '#FAFAF7' }}>
+    <div className="w-full px-4 sm:px-6 py-10 sm:py-14 pb-16" style={{ backgroundColor: '#FAFAF7' }}>
       <div className="max-w-2xl mx-auto">
 
-        {/* Header */}
-        <div className="mb-10 animate-fade-up">
-          <p className="text-xs font-medium tracking-widest uppercase mb-3"
-            style={{ color: '#6B8F71' }}>
+        <div className="mb-8 sm:mb-10 animate-fade-up">
+          <p className="text-xs font-medium tracking-widest uppercase mb-3" style={{ color: '#6B8F71' }}>
             ✦ AI-Powered
           </p>
-          <h1 className="font-display text-4xl font-semibold leading-tight mb-3"
-            style={{ color: '#1C3A2A' }}>
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold leading-tight mb-3" style={{ color: '#1C3A2A' }}>
             Analyze Product
           </h1>
-          <p className="text-base" style={{ color: '#6B7280' }}>
+          <p className="text-sm sm:text-base" style={{ color: '#6B7280' }}>
             Describe your product and let AI assign categories, tags, and sustainability filters instantly.
           </p>
         </div>
 
-        {/* Form Card */}
-        <div className="rounded-2xl p-8 border animate-fade-up-delay-1"
+        <div className="rounded-2xl p-5 sm:p-8 border animate-fade-up-delay-1"
           style={{ backgroundColor: '#FFFFFF', borderColor: '#E5E7EB', boxShadow: '0 1px 3px rgba(28,58,42,0.06)' }}>
 
           <div className="mb-5">
@@ -58,12 +54,7 @@ export default function Analyze() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200"
-              style={{
-                backgroundColor: '#F9FAFB',
-                border: '1.5px solid #E5E7EB',
-                color: '#1C3A2A',
-                fontFamily: 'DM Sans, sans-serif',
-              }}
+              style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #E5E7EB', color: '#1C3A2A', fontFamily: 'DM Sans, sans-serif' }}
               onFocus={(e) => e.target.style.borderColor = '#1C3A2A'}
               onBlur={(e) => e.target.style.borderColor = '#E5E7EB'}
             />
@@ -79,12 +70,7 @@ export default function Analyze() {
               onChange={(e) => setDescription(e.target.value)}
               rows={5}
               className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 resize-none"
-              style={{
-                backgroundColor: '#F9FAFB',
-                border: '1.5px solid #E5E7EB',
-                color: '#1C3A2A',
-                fontFamily: 'DM Sans, sans-serif',
-              }}
+              style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #E5E7EB', color: '#1C3A2A', fontFamily: 'DM Sans, sans-serif' }}
               onFocus={(e) => e.target.style.borderColor = '#1C3A2A'}
               onBlur={(e) => e.target.style.borderColor = '#E5E7EB'}
             />
@@ -120,43 +106,31 @@ export default function Analyze() {
         {result && (
           <div className="mt-6 animate-fade-up">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-5 h-5 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: '#DCFCE7' }}>
+              <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#DCFCE7' }}>
                 <span className="text-xs" style={{ color: '#16A34A' }}>✓</span>
               </div>
-              <p className="text-sm font-medium" style={{ color: '#16A34A' }}>
-                Saved to catalog
-              </p>
-              <span className="text-xs ml-auto" style={{ color: '#9CA3AF' }}>{result.created_at}</span>
+              <p className="text-sm font-medium" style={{ color: '#16A34A' }}>Saved to catalog</p>
+              <span className="text-xs ml-auto" style={{ color: '#9CA3AF' }}>
+                {new Date(result.created_at).toLocaleDateString()}
+              </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              <div className="rounded-xl p-4 border"
-                style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}>
-                <p className="text-xs font-medium uppercase tracking-wider mb-1.5"
-                  style={{ color: '#6B8F71' }}>Primary Category</p>
-                <p className="font-display text-lg font-semibold" style={{ color: '#1C3A2A' }}>
-                  {result.primary_category}
-                </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+              <div className="rounded-xl p-4 border" style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}>
+                <p className="text-xs font-medium uppercase tracking-wider mb-1.5" style={{ color: '#6B8F71' }}>Primary Category</p>
+                <p className="font-display text-lg font-semibold" style={{ color: '#1C3A2A' }}>{result.primary_category}</p>
               </div>
-              <div className="rounded-xl p-4 border"
-                style={{ backgroundColor: '#FFFBEB', borderColor: '#FDE68A' }}>
-                <p className="text-xs font-medium uppercase tracking-wider mb-1.5"
-                  style={{ color: '#92400E' }}>Sub Category</p>
-                <p className="font-display text-lg font-semibold" style={{ color: '#1C3A2A' }}>
-                  {result.sub_category}
-                </p>
+              <div className="rounded-xl p-4 border" style={{ backgroundColor: '#FFFBEB', borderColor: '#FDE68A' }}>
+                <p className="text-xs font-medium uppercase tracking-wider mb-1.5" style={{ color: '#92400E' }}>Sub Category</p>
+                <p className="font-display text-lg font-semibold" style={{ color: '#1C3A2A' }}>{result.sub_category}</p>
               </div>
             </div>
 
-            <div className="rounded-xl p-4 border mb-3"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#E5E7EB' }}>
-              <p className="text-xs font-medium uppercase tracking-wider mb-3"
-                style={{ color: '#6B7280' }}>SEO Tags</p>
+            <div className="rounded-xl p-4 border mb-3" style={{ backgroundColor: '#FFFFFF', borderColor: '#E5E7EB' }}>
+              <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: '#6B7280' }}>SEO Tags</p>
               <div className="flex flex-wrap gap-2">
                 {result.seo_tags.map((tag) => (
-                  <span key={tag}
-                    className="text-xs px-3 py-1.5 rounded-full font-medium"
+                  <span key={tag} className="text-xs px-3 py-1.5 rounded-full font-medium"
                     style={{ backgroundColor: '#F3F4F6', color: '#374151' }}>
                     #{tag}
                   </span>
@@ -164,14 +138,11 @@ export default function Analyze() {
               </div>
             </div>
 
-            <div className="rounded-xl p-4 border"
-              style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}>
-              <p className="text-xs font-medium uppercase tracking-wider mb-3"
-                style={{ color: '#6B8F71' }}>Sustainability Filters</p>
+            <div className="rounded-xl p-4 border mb-2" style={{ backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }}>
+              <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: '#6B8F71' }}>Sustainability Filters</p>
               <div className="flex flex-wrap gap-2">
                 {result.sustainability_filters.map((f) => (
-                  <span key={f}
-                    className="text-xs px-3 py-1.5 rounded-full font-medium"
+                  <span key={f} className="text-xs px-3 py-1.5 rounded-full font-medium"
                     style={{ backgroundColor: '#DCFCE7', color: '#166534', border: '1px solid #BBF7D0' }}>
                     ♻ {f}
                   </span>
